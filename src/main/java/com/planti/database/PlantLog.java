@@ -1,8 +1,6 @@
 package com.planti.database;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -12,6 +10,8 @@ public class PlantLog {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int ID;
 
+    @ManyToOne
+    @JoinColumn(name = "nameId")
     private String name;
     private String type;
     private String description;
