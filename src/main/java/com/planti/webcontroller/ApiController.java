@@ -43,6 +43,8 @@ public class ApiController {
 
     @PostMapping(value ="/newPlant")
     public ResponseEntity<Object> createNewPlant(@RequestBody Plant plant){
+        plant.setNextWatering(new Date(plant.getLastWatering().getTime() + plant.getTimeToNextWatering()));
+        plant.setPlantHistoryLog(new ArrayList<>());
         try {
             plantRepository.save(plant);
             return new ResponseEntity<>(HttpStatus.OK);
